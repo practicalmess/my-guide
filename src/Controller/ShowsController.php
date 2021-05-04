@@ -4,25 +4,20 @@ namespace App\Controller;
 
 // use Cake\Routing\Router;
 
-class ShowsController extends AppController
-{
-	public function initialize(): void
-	{
+class ShowsController extends AppController {
+	public function initialize(): void {
 		parent::initialize();
 
 		$this->loadComponent('Paginator');
 		$this->loadComponent('Flash');
-    // $this->loadComponent('Router');
 	}
 
-	public function index()
-  {
+	public function index() {
     $shows = $this->Paginator->paginate($this->Shows->find());
     $this->set(compact('shows'));
   }
 
-  public function add()
-  {
+  public function add() {
     $show = $this->Shows->newEmptyEntity();
     if ($this->request->is(['post', 'put'])) {
       $show = $this->Shows->patchEntity($show, $this->request->getData());
